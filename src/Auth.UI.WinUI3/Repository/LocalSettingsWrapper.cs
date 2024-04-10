@@ -8,22 +8,17 @@ using Windows.Storage;
 
 using Windows.ApplicationModel;
 using Firebase.Auth.UI.Helpers;
+using System.Reflection;
 
 
 namespace Firebase.Auth.UI.Repository
 {
     internal class LocalSettingsWrapper
     {
-        private const string _defaultApplicationDataFolder = "AutoVid/ApplicationData";
         private const string _defaultLocalSettingsFile = "LocalSettings.json";
-
-
         private readonly string _localApplicationData = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
         private readonly string _applicationDataFolder;
         private readonly string _localsettingsFile;
-
-
-
 
         private IDictionary<string, object> _settings;
 
@@ -45,7 +40,8 @@ namespace Firebase.Auth.UI.Repository
         }
         public LocalSettingsWrapper()
         {
-            _applicationDataFolder = System.IO.Path.Combine(_localApplicationData, _defaultApplicationDataFolder);
+            var appName = Assembly.GetExecutingAssembly().GetName().Name;
+            _applicationDataFolder = System.IO.Path.Combine(_localApplicationData, $"{appName}/ApplicationData");
             _localsettingsFile = _defaultLocalSettingsFile;
 
             _settings = new Dictionary<string, object>();
