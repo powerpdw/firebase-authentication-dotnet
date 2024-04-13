@@ -23,8 +23,8 @@ namespace Auth.WinUI3.Sample
             // Firebase UI initialization
             FirebaseUI.Initialize(new FirebaseUIConfig
             {
-                ApiKey = "AIzaSyCzXbuqnMTebEdGZV3fZ5kDSqKq194q1FI",
-                AuthDomain = "dreamcraft-389613.firebaseapp.com",
+                ApiKey = "<API KEY>",
+                AuthDomain = "<AUTH DOMAIN>.firebaseapp.com",
                 Providers = new FirebaseAuthProvider[]
                 {
                     new GoogleProvider(),
