@@ -72,7 +72,7 @@ namespace Firebase.Auth.UI.Repository
                 string filepath = System.IO.Path.Combine(_applicationDataFolder, _localsettingsFile);
                 if (System.IO.File.Exists(filepath))
                 {
-                    string content = await System.IO.File.ReadAllTextAsync(filepath);
+                    string content = await System.IO.File.ReadAllTextAsync(filepath).ConfigureAwait(false);
                     _settings = await Json.ToObjectAsync<IDictionary<string, object>>(content).ConfigureAwait(false);
                 }
                 else
@@ -95,7 +95,7 @@ namespace Firebase.Auth.UI.Repository
             }
             else
             {
-                await InitializeAsync();
+                await InitializeAsync().ConfigureAwait(false);
 
                 if (_settings != null && _settings.TryGetValue(key, out var obj))
                 {
@@ -114,7 +114,7 @@ namespace Firebase.Auth.UI.Repository
             }
             else
             {
-                await InitializeAsync();
+                await InitializeAsync().ConfigureAwait(false);
 
                 _settings[key] = await Json.StringifyAsync(value).ConfigureAwait(false);
                 if (System.IO.Directory.Exists(_applicationDataFolder) == false)
