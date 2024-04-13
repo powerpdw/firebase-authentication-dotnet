@@ -13,7 +13,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Auth\Auth.csproj" />
+    <PackageReference Include="FirebaseAuthentication.net" Version="4.1.0" />
   </ItemGroup>
 
   <ItemGroup>

@@ -18,26 +18,26 @@ namespace Auth.WinUI3.Sample
             this.InitializeComponent();
 
             // Force override culture & language
-            ApplicationLanguages.PrimaryLanguageOverride = "cs";
+            //ApplicationLanguages.PrimaryLanguageOverride = "cs";
 
             // Firebase UI initialization
             FirebaseUI.Initialize(new FirebaseUIConfig
             {
-                ApiKey = "<YOUR API KEY>",
-                AuthDomain = "<YOUR PROJECT DOMAIN>.firebaseapp.com",
+                ApiKey = "AIzaSyCzXbuqnMTebEdGZV3fZ5kDSqKq194q1FI",
+                AuthDomain = "dreamcraft-389613.firebaseapp.com",
                 Providers = new FirebaseAuthProvider[]
                 {
                     new GoogleProvider(),
-                    new FacebookProvider(),
-                    new AppleProvider(),
-                    new TwitterProvider(),
-                    new GithubProvider(),
-                    new MicrosoftProvider(),
+                    //new FacebookProvider(),
+                    //new AppleProvider(),
+                    //new TwitterProvider(),
+                    //new GithubProvider(),
+                    //new MicrosoftProvider(),
                     new EmailProvider()
                 },
-                PrivacyPolicyUrl = "https://github.com/step-up-labs/firebase-authentication-dotnet",
-                TermsOfServiceUrl = "https://github.com/step-up-labs/firebase-database-dotnet",
-                IsAnonymousAllowed = true,
+                PrivacyPolicyUrl = "https://dreamcraft-389613.web.app/privacy-policy",
+                TermsOfServiceUrl = "https://dreamcraft-389613.web.app/terms-of-service",
+                IsAnonymousAllowed = false,
                 AutoUpgradeAnonymousUsers = true,
                 UserRepository = new StorageRepository(),
                 // Func called when upgrade of anonymous user fails because the user already exists

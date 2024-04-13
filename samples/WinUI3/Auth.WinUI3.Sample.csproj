@@ -11,6 +11,7 @@
     <Platforms>x86;x64;arm64</Platforms>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <EnablePreviewMsixTooling>true</EnablePreviewMsixTooling>
+    <WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
     <RuntimeIdentifiers>win10-x86;win10-x64;win10-arm64</RuntimeIdentifiers>
     <PublishProfile>win10-$(Platform).pubxml</PublishProfile>
   </PropertyGroup>
@@ -88,7 +89,6 @@
   <ItemGroup>
     <ProjectReference Include="..\..\src\Auth.UI.WinUI3\Auth.UI.WinUI3.csproj" />
     <ProjectReference Include="..\..\src\Auth.UI\Auth.UI.csproj" />
-    <ProjectReference Include="..\..\src\Auth\Auth.csproj" />
   </ItemGroup>  
 <ItemGroup>
     <PRIResource Include="strings\cs\Resources.resw" />
@@ -208,6 +208,7 @@
     <PRIResource Include="strings\zh\Resources.resw" />
   </ItemGroup>  
   <ItemGroup>
+    <PackageReference Include="FirebaseAuthentication.net" Version="4.1.0" />
     <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.3.230602002" />
     <PackageReference Include="Microsoft.Graphics.Win2D" Version="1.0.5.1" />
     <PackageReference Include="Microsoft.Windows.Compatibility" Version="7.0.4" />
