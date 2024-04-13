@@ -9,6 +9,7 @@ using Windows.Storage;
 using Windows.ApplicationModel;
 using Firebase.Auth.UI.Helpers;
 using System.Reflection;
+using System.Diagnostics;
 
 
 namespace Firebase.Auth.UI.Repository
@@ -40,8 +41,11 @@ namespace Firebase.Auth.UI.Repository
         }
         public LocalSettingsWrapper()
         {
-            var appName = Assembly.GetExecutingAssembly().GetName().Name;
-            _applicationDataFolder = System.IO.Path.Combine(_localApplicationData, $"{appName}/ApplicationData");
+            var process = Process.GetCurrentProcess();
+            string mainExecutablePath = process.MainModule.FileName;
+            string appName = System.IO.Path.GetFileNameWithoutExtension(mainExecutablePath);
+
+            _applicationDataFolder = System.IO.Path.Combine(_localApplicationData, $"{appName}Data");
             _localsettingsFile = _defaultLocalSettingsFile;
 
             _settings = new Dictionary<string, object>();
@@ -113,6 +117,10 @@ namespace Firebase.Auth.UI.Repository
                 await InitializeAsync();
 
                 _settings[key] = await Json.StringifyAsync(value).ConfigureAwait(false);
+                if (System.IO.Directory.Exists(_applicationDataFolder) == false)
+                {
+                    System.IO.Directory.CreateDirectory(_applicationDataFolder);
+                }
 
                 string filepath = System.IO.Path.Combine(_applicationDataFolder, _localsettingsFile);
                 await System.IO.File.WriteAllTextAsync(filepath, await Json.StringifyAsync(_settings)).ConfigureAwait(false);
