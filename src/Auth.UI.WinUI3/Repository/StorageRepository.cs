@@ -33,6 +33,10 @@ namespace Firebase.Auth.Repository
         {
             string storageKey = LocalSettingsWrapper.Instance.ReadSettingAsync<string>(UserStorageKey).Result;
             string credentialKey = LocalSettingsWrapper.Instance.ReadSettingAsync<string>(CredentialStorageKey).Result;
+            if (storageKey == null || credentialKey == null)
+            {
+                return (null, null);
+            }
             var info = JsonConvert.DeserializeObject<UserInfo>(storageKey, this.options);
             var credential = JsonConvert.DeserializeObject<FirebaseCredential>(credentialKey, this.options);
 
@@ -49,7 +53,9 @@ namespace Firebase.Auth.Repository
 
         public bool UserExists()
         {
-            return LocalSettingsWrapper.Instance.Exists(UserStorageKey);
+            string storageKey = LocalSettingsWrapper.Instance.ReadSettingAsync<string>(UserStorageKey).Result;
+            return storageKey != null;
+            //return LocalSettingsWrapper.Instance.Exists(UserStorageKey);
             //return this.settings.Values.ContainsKey(UserStorageKey);
         }
     }
